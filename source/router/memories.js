@@ -31,4 +31,24 @@ router.get("/posts", validate, (req, res) => {
     );
 });
 
+
+router.delete("/post/:id", (req, res) => {
+  const { id } = req.params;
+  Memories.findByIdAndDelete(id)
+    .then((response) => res.send(response))
+    .catch(() =>
+      resp.status(400).json({ errorMessage: "Something went wrong" })
+    );
+});
+
+router.put("/post/:id", (req, res) => {
+  const { post, author, image, title } = req.body;
+  const { id } = req.params;
+  Memories.findByIdAndUpdate(id, { post, author, image, title })
+    .then((resp) => res.send(resp))
+    .catch(() =>
+      res.status(400).json({ errorMessage: "Some thing went wrong" })
+    );
+});
+
 module.exports = router;
