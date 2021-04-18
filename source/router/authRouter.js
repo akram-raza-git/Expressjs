@@ -1,4 +1,3 @@
-const express = require("express");
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
@@ -11,7 +10,7 @@ module.exports = (req, res, next) => {
     const verify = jwt.verify(token, process.env.TOKEN_SECRET);
     res.user = verify;
   } catch (error) {
-    res.send(error);
+    res.status(400).json({ errorMessage: "Something went wrong" });
   }
   next();
 };
