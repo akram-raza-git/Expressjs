@@ -31,6 +31,7 @@ router.get("/posts", validate, (req, res) => {
     );
 });
 
+
 router.delete("/post/:id", (req, res) => {
   const { id } = req.params;
   Memories.findByIdAndDelete(id)
