@@ -26,7 +26,9 @@ router.post("/login", async (req, res) => {
     if (!validPassword)
       return res.sendStatus(400).json({ errorMessage: "Invalid password" });
     const token = jwt.sign({ _id: checkUser._id }, process.env.TOKEN_SECRET);
-    res.header("auth-token", token).json({ token });
+    const user = { ...checkUser._doc };
+    delete user.password;
+    res.header("auth-token", token).json({ token, user });
     res.send(token);
   } catch (error) {
     res.status(400).json({ errorMessage: "Something went wrong" });
