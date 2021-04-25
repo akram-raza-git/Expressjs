@@ -18,6 +18,7 @@ const memorySchema = new mongoose.Schema({
   },
   image: {
     type: String,
+    default: null,
   },
   date: {
     type: Date,

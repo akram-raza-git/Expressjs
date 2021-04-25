@@ -17,6 +17,23 @@ const userSchema = new mongoose.Schema({
     min: 6,
     max: 1024,
   },
+  image: {
+    type: String,
+    default: null,
+  },
+  mobile: {
+    type: Number,
+    default: null,
+  },
+  Bio: {
+    type: String,
+    default: null,
+    min: 10,
+  },
+  address: {
+    type: Object,
+    default: Object,
+  },
   date: {
     type: Date,
     default: Date.now(),

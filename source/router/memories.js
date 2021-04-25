@@ -31,7 +31,7 @@ router.get("/posts", validate, (req, res) => {
     );
 });
 
-router.delete("/post/:id", (req, res) => {
+router.delete("/post/:id", validate, (req, res) => {
   const { id } = req.params;
   Memories.findByIdAndDelete(id)
     .then((response) => res.send(response))
@@ -40,7 +40,7 @@ router.delete("/post/:id", (req, res) => {
     );
 });
 
-router.put("/post/:id", (req, res) => {
+router.put("/post/:id", validate, (req, res) => {
   const { post, author, image, title } = req.body;
   const { id } = req.params;
   Memories.findByIdAndUpdate(id, { post, author, image, title })
@@ -50,7 +50,7 @@ router.put("/post/:id", (req, res) => {
     );
 });
 
-router.get("/post/:id", (req, res) => {
+router.get("/post/:id", validate, (req, res) => {
   const { id } = req.params;
   Memories.findById(id)
     .then((resp) => res.send(resp))
