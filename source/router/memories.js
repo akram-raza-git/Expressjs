@@ -6,12 +6,13 @@ const router = express.Router();
 
 router.post("/post", validate, (req, res) => {
   console.log(res.user);
-  const { post, author, image, title } = req.body || {};
+  const { post, author, image, title, userId } = req.body || {};
   const memory = new Memories({
     post,
     author,
     image,
     title,
+    userId,
   });
   memory
     .save()
