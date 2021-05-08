@@ -25,9 +25,8 @@ router.post("/login", async (req, res) => {
     const validPassword = await bcryptjs.compare(password, checkUser.password);
     if (!validPassword)
       return res.sendStatus(400).json({ errorMessage: "Invalid password" });
-    const token = jwt.sign({ _id: checkUser._id }, process.env.TOKEN_SECRET);
-    const user = { ...checkUser._doc };
-    delete user.password;
+    const token = jwt.sign({ id: checkUser._id }, process.env.TOKEN_SECRET);
+    const user = { id: checkUser._doc._id };
     res.header("auth-token", token).json({ token, user });
     res.send(token);
   } catch (error) {
